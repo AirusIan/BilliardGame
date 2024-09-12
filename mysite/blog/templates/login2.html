@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入</title>
+</head>
+<body>
+    <h1>登入頁面</h1>
+
+    <!-- 登录表单 -->
+    <form id="loginForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登入</button>
+    </form>
+
+    <!-- 消息框，显示后端返回的错误或成功消息 -->
+    <div id="messageBox" style="color: red;"></div>
+
+    <!-- JavaScript 处理登录逻辑 -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // 阻止表单默认提交
+
+            // 获取表单中的数据
+            const account = document.querySelector('[name="account"]').value;
+            const pwd = document.querySelector('[name="pwd"]').value;
+            const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+            // 创建要发送的数据对象
+            const data = {
+                'account': account,
+                'pwd': pwd,
+            };
+
+            // 使用 fetch 发送 POST 请求
+            fetch('/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,  // 发送 CSRF 令牌
+                },
+                body: JSON.stringify(data),  // 将数据转换为 JSON 格式
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();  // 成功时解析为 JSON
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.error || '登录失败');
+                    });
+                }
+            })
+            .then(data => {
+                // 登录成功，重定向到个人页面
+                window.location.href = `/personal_page/${data.player_id}/`;
+            })
+            .catch(error => {
+                // 显示错误消息
+                document.getElementById('messageBox').innerText = error.message;
+            });
+        });
+    </script>
+</body>
+</html>

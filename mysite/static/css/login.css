@@ -1,0 +1,73 @@
+/* 設定背景圖片並覆蓋整個頁面 */
+body {
+    background-image: url('../login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* 整體容器樣式：將表單放置在左上角 */
+.login-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* 標題樣式 */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 表單欄位樣式 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* 提交按鈕樣式 */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+/* 錯誤訊息樣式 */
+.messages {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+}
+
+/* 錯誤訊息列表樣式 */
+.messages ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.messages li {
+    margin-bottom: 10px;
+}

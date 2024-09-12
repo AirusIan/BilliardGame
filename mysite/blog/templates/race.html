@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預約比賽</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/race.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>預約比賽</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}  <!-- 渲染表单字段 -->
+            </div>
+            <button type="submit" class="btn-submit">提交比賽</button>
+        </form>
+    </div>
+</body>
+</html>

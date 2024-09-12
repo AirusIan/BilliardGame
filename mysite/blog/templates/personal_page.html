@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人頁面</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/personal_page.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎, {{ player.name }}!</h1>
+        <div class="info">
+            <p><strong>帳號:</strong> {{ player.account }}</p>
+            <p><strong>排名:</strong> {{ player.ranking }}</p>
+        </div>
+        <a href="{% url 'race_page' player.id %}" class="btn-schedule">預約比賽</a>
+
+
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人頁面</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/personal_page.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎, {{ player.name }}!</h1>
+        <p>帳號: {{ player.account }}</p>
+        <p>排名: {{ player.ranking }}</p>
+
+        <!-- 预约比赛按钮 -->
+        <a href="{% url 'race_page' player.id %}" class="btn-schedule">預約比賽</a>
+
+        <!-- 显示玩家参与的比赛 -->
+        <h2>參加的比賽</h2>
+        {% if matches %}
+            <table class="match-table">
+                <thead>
+                    <tr>
+                        <th>比賽時間</th>
+                        <th>參賽者 1</th>
+                        <th>參賽者 2</th>
+                        <th>勝者</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for match in matches %}
+                    <tr>
+                        <td>{{ match.match_time }}</td>
+                        <td>{{ match.player1 }}</td>
+                        <td>{{ match.player2 }}</td>
+                        <td>{{ match.winner }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>暫無比賽</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁 - BilliardGame</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎來到 BilliardGame</h1>
+        <div class="billiard-ball">8</div>
+        <button onclick="window.location.href='/login/'">登入</button>
+        <button onclick="window.location.href='/register/'">註冊</button>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2a2a2a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 將內容靠左 */
+    justify-content: center;
+    padding-left: 50px; /* 給左側留一些空間 */
+    min-height: 100vh;
+    background-image: url("../background.jpg"); /* 相對路徑指向 static 資料夾中的背景圖片 */
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #323fcd;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #228B22;
+}
+
+.billiard-ball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #898484, #0f0e0e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 1px 1px 2px #000;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* 模擬 3D 投影 */
+    margin-bottom: 20px;
+    position: relative;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #FFD700;
+    font-size: 0.8rem;
+}

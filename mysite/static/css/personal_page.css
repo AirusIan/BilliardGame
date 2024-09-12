@@ -1,0 +1,76 @@
+/* 通用容器样式 */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 头部样式 */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* 预约比赛按钮样式 */
+.btn-schedule {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-schedule:hover {
+    background-color: #0056b3;
+}
+
+/* 比赛表格样式 */
+.match-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.match-table th, .match-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.match-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.match-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.match-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.match-table td {
+    text-align: center;
+}
+
+/* 提示消息 */
+p {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #777;
+}

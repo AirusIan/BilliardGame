@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登記比賽結果</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register_result.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>登記比賽結果</h1>
+
+        <div class="match-info">
+            <p><strong>比賽時間:</strong> {{ match.match_time }}</p>
+            <p><strong>參賽者 1:</strong> {{ match.player1 }}</p>
+            <p><strong>參賽者 2:</strong> {{ match.player2 }}</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn-submit">提交結果</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>註冊帳號</h1>
+        <form method="POST"> 
+            {% csrf_token %}
+            <!-- 從 context 拿出 form -->
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <input type="submit" value="提交" class="btn-submit">
+        </form>
+    </div>
+</body>
+</html>
