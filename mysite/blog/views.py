@@ -202,11 +202,17 @@ def race_page_view(request, player_id):
             player1_account = form.cleaned_data['player1']
             player2_account = form.cleaned_data['player2']
 
+            refresh = RefreshToken.for_user(current_player)
+            access_token = str(refresh.access_token)
+            refresh_token = str(refresh)
+
             # 保存比赛数据到数据库
             match = Match.objects.create(match_time=match_time, player1=player1_account, player2=player2_account)
-
+            response = redirect('personal_page', player_id=current_player.id)  # 跳转到个人页面
+            response.set_cookie('access_token', access_token, httponly=True)
+            response.set_cookie('refresh_token', refresh_token, httponly=True)
             # 提交表单后，重定向回个人页面
-            return redirect('personal_page', player_id=current_player.id)
+            return response
 
     else:
         form = RaceForm()
