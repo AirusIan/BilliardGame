@@ -104,12 +104,50 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mydb',  # 在 Cloud SQL 中創建的資料庫名
+#         'USER': 'airus',  # 你的 Cloud SQL 用戶
+#         'PASSWORD': '123',   # 你的 Cloud SQL 密碼
+#         'HOST': '/cloudsql/billiardgame:asia-east1:billiardgame',  # Cloud SQL 實例連接名稱
+#         # 'HOST': 'localhost',  # Cloud SQL 實例連接名稱
+#         'PORT': '5432',
+#     }
+# }
+import os
+
+if os.getenv('GAE_ENV', '').startswith('standard'):
+    # 如果在 App Engine 上運行，使用 Unix 套接字
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydb',
+            'USER': 'airus',
+            'PASSWORD': '123',
+            'HOST': '/cloudsql/billiardgame:asia-east1:billiardgame',
+            'PORT': '5432',
+        }
     }
-}
+else:
+    # 在本地運行時使用 Cloud SQL Proxy 或 Public IP
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydb',
+            'USER': 'airus',
+            'PASSWORD': '123',
+            'HOST': 'localhost',  # 使用 Cloud SQL Proxy 時是 localhost
+            'PORT': '5432',
+        }
+    }
+
 
 
 # Password validation
@@ -130,14 +168,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATIC_URL = '/static/'
-
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # 確保這行指向存在的資料夾路徑
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # 如果你使用 pathlib
-    # 或者是 Windows 系統下直接寫路徑：
-    "D:/BilliardGame/mysite/static"
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",  # 如果你使用 pathlib
+#     # 或者是 Windows 系統下直接寫路徑：
+#     "D:/BilliardGame/mysite/static"
+# ]
 
 
 # Internationalization
@@ -155,7 +193,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
